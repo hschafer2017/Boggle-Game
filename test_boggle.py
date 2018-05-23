@@ -35,3 +35,13 @@ class TestBoggle(unittest.TestCase):
             ]
         
         self.assertEqual(neighbours, expected)
+
+    def test_all_grid_neighbours(self):
+        actual = all_grid_neighbours(make_grid(2,2))
+        expected = {
+            (0,0):[(1,0), (0,1), (1,1)], 
+            (1,0):[(0,0), (0,1), (1,1)], 
+            (0,1):[(1,0), (0,0), (1,1)], 
+            (1,1):[(1,0), (0,1), (0,0)] 
+        }
+        self.assertDictEqual(actual,expected)

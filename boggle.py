@@ -24,4 +24,17 @@ def get_neighbours(pos):
             (col-1,row+1),
             (col-1,row),
             ]
-    
+
+def all_grid_neighbours(grid):
+    neighbours_of = {}
+    for pos in grid:
+        neighbours = get_neighbours(pos)
+        
+        real_neighbours = []
+        for n in neighbours:
+            if n in grid:
+                real_neighbours.append(n)
+            
+        neighbours_of[pos] = real_neighbours
+
+    return neighbours_of
