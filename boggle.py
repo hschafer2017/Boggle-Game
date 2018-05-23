@@ -1,17 +1,9 @@
 from string import ascii_uppercase 
 from random import choice 
 
-def check():
-    return False
-
-
 def make_grid(cols,rows):
-    grid = {}
-    for c in range(cols):            # if cols is 5, C will be 0 to 4 
-        for r in range(rows):            # if rows is 3, r will be 0 to 2 
-            grid[(c,r)] = choice(ascii_uppercase)
-    return grid  
-
+    return {(c,r): choice(ascii_uppercase) for c in range(cols) for r in range(rows)}
+    
 def get_neighbours(pos):
     col, row = pos
     return [
@@ -24,17 +16,19 @@ def get_neighbours(pos):
             (col-1,row+1),
             (col-1,row),
             ]
+    
+def all_grid_neighbours(grid): 
+    return {pos: [n for n in get_neighbours(pos) if n in grid] for pos in grid}
 
-def all_grid_neighbours(grid):
-    neighbours_of = {}
-    for pos in grid:
-        neighbours = get_neighbours(pos)
-        
-        real_neighbours = []
-        for n in neighbours:
-            if n in grid:
-                real_neighbours.append(n)
-            
-        neighbours_of[pos] = real_neighbours
+def path_to_word(grid,path):
+    word = ""
+    for pos in path: 
+        word += grid[pos]
+    return word
 
-    return neighbours_of
+def read_word_list(filename):
+    f = open(filename, "r")
+    text = f.read().upper()
+    words = text.split('\n')
+    f.close()
+    return words

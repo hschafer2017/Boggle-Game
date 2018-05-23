@@ -1,22 +1,3 @@
-# l = [1,3,5]
-
-# # p = []
-# # for n in l: 
-# #         p.append(n*2)
-
-# p = [n*2 for n in l]
-
-# print(p)
-
-
-# # [0,2,4,6,8,10,12]
-
-# print([i % 2 == 0 for i in range(0,7)])
-
-# print([ i == j for i in range(0,10) for j in range(0,10)])
-
-# print([ [ j for j in range(i)] for i in range(0,10) for j in range(0,10)])
-
 # List Comprehension Challenges
 # Example:
 # Question 
