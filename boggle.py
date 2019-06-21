@@ -27,11 +27,18 @@ def path_to_word(grid,path):
     return word
 
 def read_wordfile(filename):
+    full_words = set()
+    stems = set()
+    
     f = open(filename, "r")
     text = f.read().upper()
-    words = text.split('\n')
+    full_words = text.split('\n')
     f.close()
-    return set(words)
+    for word in full_words:
+        for i in range(1, len(word)):
+                stems.add(word[i:])
+                
+    return full_words, stems
     
 def search(grid, wordlist):
     all_neighbours = all_grid_neighbours(grid)
